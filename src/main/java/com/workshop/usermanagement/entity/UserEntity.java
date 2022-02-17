@@ -8,9 +8,9 @@ import javax.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
 
 
-@Entity
-@Table(name = "user")
 
+@Table(name = "user")
+@Entity
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

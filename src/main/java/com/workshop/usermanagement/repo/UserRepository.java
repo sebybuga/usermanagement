@@ -7,7 +7,6 @@ import com.workshop.usermanagement.entity.UserEntity;
 
 
 @Repository
-public interface UserRepository extends CrudRepository<UserEntity, Integer>
-{
+public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
 }
