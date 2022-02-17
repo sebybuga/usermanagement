@@ -1,10 +1,12 @@
 package com.workshop.usermanagement.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.workshop.usermanagement.dto.UserDto;
@@ -23,11 +25,17 @@ public class UserController {
     public UserDto saveUser(@RequestBody UserDto userDto) {
         return userService.saveUser(userDto);
     }
-
+    /*TODO add rights*/
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable Integer id) {
         return userService.getUser(id);
     }
-    //de facut update si delete	
+    
+	/* TODO add rights */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)    
+    public boolean deleteUser(@PathVariable Integer id) {
+        return userService.deleteUser(id);
+    }
+    	
 	
 }
