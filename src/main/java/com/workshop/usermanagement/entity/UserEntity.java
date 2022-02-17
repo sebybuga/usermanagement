@@ -4,13 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
-
-
+import javax.persistence.Id;
 
 @Table(name = "user")
 @Entity
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +33,12 @@ public class UserEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
+
+	public Integer getId() {
+		return id;
+	}
+
+	  
     
     
 }
