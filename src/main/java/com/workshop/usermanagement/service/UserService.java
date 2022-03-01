@@ -9,8 +9,11 @@ import com.workshop.usermanagement.service.UserService;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.LogManager;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.Logger;
 
 @Service
@@ -52,7 +55,7 @@ public class UserService {
 		if (id != null && id > 0) {
 			existingUser = userRepository.findById(id);
 			System.out.println(existingUser);
-			if (existingUser != null && existingUser.toString() != "Optional.empty") {
+			if (existingUser.isPresent()) {
 				userRepository.deleteById(id);
 				response = true;
 			}
@@ -60,6 +63,16 @@ public class UserService {
 
 		return response;
 
+	}
+
+	public List<UserDto> getAllUsers() {
+		return userRepository.findAll().stream().map(userEntity -> mapper.map(userEntity, UserDto.class))
+				.collect(Collectors.toList());
+	}
+	
+	public List<UserDto> getAllUsersByIds(List<Integer> userIds) {
+		return userRepository.findAllById(userIds).stream().map(userEntity -> mapper.map(userEntity, UserDto.class))
+				.collect(Collectors.toList());
 	}
 
 }

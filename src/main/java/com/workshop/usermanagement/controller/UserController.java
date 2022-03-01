@@ -1,5 +1,7 @@
 package com.workshop.usermanagement.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +37,16 @@ public class UserController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)    
     public boolean deleteUser(@PathVariable Integer id) {
         return userService.deleteUser(id);
+    }
+    
+    @GetMapping("/all")
+    public List<UserDto> getAllUsers() {
+        return userService.getAllUsers();
+    }
+    
+    @GetMapping("/all/{ids}")
+    public List<UserDto> getUsersByIds(@PathVariable List<Integer> ids) {
+        return userService.getAllUsersByIds(ids);
     }
     	
 	
